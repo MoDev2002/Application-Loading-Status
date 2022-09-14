@@ -9,6 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,21 +33,27 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
         custom_button.setOnClickListener {
-            download()
+            when(findViewById<RadioButton>(radioGroup.checkedRadioButtonId)) {
+                glide -> download(GLIDE_URL, R.string.glide_title, R.string.glide_description)
+                retrofit -> download(RETROFIT_URL, R.string.retrofit_title, R.string.retrofit_description)
+                loadApp -> download(APP_URL, R.string.loadapp_title, R.string.loadapp_description)
+                else -> Toast.makeText(this, "Please Select File To Download", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+            custom_button.buttonState = ButtonState.Completed
         }
     }
 
-    private fun download() {
+    private fun download(url: String, title: Int, description: Int) {
         val request =
-            DownloadManager.Request(Uri.parse(URL))
-                .setTitle(getString(R.string.app_name))
-                .setDescription(getString(R.string.app_description))
+            DownloadManager.Request(Uri.parse(url))
+                .setTitle(getString(title))
+                .setDescription(getString(description))
                 .setRequiresCharging(false)
                 .setAllowedOverMetered(true)
                 .setAllowedOverRoaming(true)
@@ -53,11 +61,15 @@ class MainActivity : AppCompatActivity() {
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
+
+        custom_button.buttonState = ButtonState.Loading
     }
 
     companion object {
-        private const val URL =
+        private const val APP_URL =
             "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        private const val GLIDE_URL = "https://github.com/bumptech/glide"
+        private const val RETROFIT_URL = "https://codeload.github.com/square/retrofit/zip/refs/heads/master"
         private const val CHANNEL_ID = "channelId"
     }
 

@@ -39,7 +39,7 @@ class LoadingButton @JvmOverloads constructor(
     }
     private val valueAnimator = ValueAnimator.ofInt(0, 360).setDuration(2000)
 
-    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { _, _, new ->
+    var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { _, _, new ->
         //check when ButtonState is changed
         when(new) {
             //when the button is loading change button text and start the animation
