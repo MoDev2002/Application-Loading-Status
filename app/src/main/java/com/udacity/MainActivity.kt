@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity() {
         custom_button.setOnClickListener {
             when(findViewById<RadioButton>(radioGroup.checkedRadioButtonId)) {
                 glide -> {
-                    fileName = getString(R.string.glide_text)
+                    fileName = getString(R.string.glide_title)
                     download(GLIDE_URL, R.string.glide_title, R.string.glide_description)
                 }
                 retrofit -> {
-                    fileName = getString(R.string.retrofit_text)
+                    fileName = getString(R.string.retrofit_title)
                     download(RETROFIT_URL, R.string.retrofit_title, R.string.retrofit_description)
                 }
                 loadApp -> {
-                    fileName = getString(R.string.loadapp_text)
+                    fileName = getString(R.string.loadapp_title)
                     download(APP_URL, R.string.loadapp_title, R.string.loadapp_description)
                 }
                 else -> Toast.makeText(this, "Please Select File To Download", Toast.LENGTH_SHORT).show()
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         private const val APP_URL =
             "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
         private const val GLIDE_URL = "https://github.com/bumptech/glide"
-        private const val RETROFIT_URL = "https://codeload.github.com/square/retrofit/zip/refs/heads/master"
+        private const val RETROFIT_URL = "https://codeload.github.com/square/retrofit/zip/refs/heads/masterfails"
         private const val CHANNEL_ID = "channelId"
     }
 

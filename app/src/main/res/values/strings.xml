@@ -21,4 +21,7 @@
     <string name="notification_channel_id">download_channel</string>
     <string name="notification_channel_name">Download</string>
     <string name="notification_description">Tap to see download status</string>
+    <string name="file_name_text">File Name :</string>
+    <string name="status_text">Status :</string>
+    <string name="detail_button_text">OK</string>
 </resources>
