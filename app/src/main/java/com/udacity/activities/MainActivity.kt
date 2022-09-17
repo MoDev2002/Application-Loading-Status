@@ -1,4 +1,4 @@
-package com.udacity
+package com.udacity.activities
 
 import android.app.DownloadManager
 import android.app.NotificationChannel
@@ -16,8 +16,9 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
+import com.udacity.customViews.ButtonState
+import com.udacity.R
+import com.udacity.utils.sendNotification
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 

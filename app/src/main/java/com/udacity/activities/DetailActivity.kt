@@ -1,10 +1,12 @@
-package com.udacity
+package com.udacity.activities
 
 import android.app.NotificationManager
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.getSystemService
+import com.udacity.utils.INTENT_FILE_KEY
+import com.udacity.utils.INTENT_STATUS_KEY
+import com.udacity.R
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
 
